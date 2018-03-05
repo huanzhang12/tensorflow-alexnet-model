@@ -100,6 +100,9 @@ class AlexNet(object):
         # Load the weights into memory
         weights_dict = np.load(self.WEIGHTS_PATH, encoding='bytes').item()
 
+        # list of all assignment operators
+        assign_list = []
+
         # Loop over all layer names stored in the weights dict
         for op_name in weights_dict:
 
@@ -114,12 +117,16 @@ class AlexNet(object):
                         # Biases
                         if len(data.shape) == 1:
                             var = tf.get_variable('biases', trainable=False)
-                            session.run(var.assign(data))
+                            assign_list.append(var.assign(data))
 
                         # Weights
                         else:
                             var = tf.get_variable('weights', trainable=False)
-                            session.run(var.assign(data))
+                            assign_list.append(var.assign(data))
+
+        # create a group operator for all assignments
+        ret = tf.group(assign_list, name="load_weights")
+        return ret
 
 
 def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name,
