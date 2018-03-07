@@ -12,9 +12,9 @@ Then run `dump_pb.py`
 python3 dump_pb.py
 ```
 
-and protobuf will be saved to alexnex.pb
+and a frozen protobuf will be saved to alexnex\_frozen.pb
 
 Download saved alexnet.pb at:
 
-[alexnet.pb](http://jaina.cs.ucdavis.edu/datasets/adv/imagenet/alexnet.pb "alexnet.pb")
+[alexnet\_frozen.pb](http://jaina.cs.ucdavis.edu/datasets/adv/imagenet/alexnet_frozen.pb "alexnet_frozen.pb")
 
